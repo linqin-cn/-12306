@@ -14,6 +14,6 @@ public class MemberController {
 
     @GetMapping("/count")
     public Integer count() {
-        return memberMapper.count();
+        return Math.toIntExact(memberMapper.countByExample(null));
     }
 }
