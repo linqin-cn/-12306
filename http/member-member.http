@@ -4,3 +4,9 @@ Accept: application/json
 <> 2026-05-13T201007.200.json
 
 ###
+POST http://localhost:8000/member/member/register
+Content-Type: application/x-www-form-urlencoded
+
+mobile = 123467
+
+###
