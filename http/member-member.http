@@ -13,6 +13,12 @@ mobile = 12346789
 POST http://localhost:8000/member/member/send-code
 Content-Type: application/x-www-form-urlencoded
 
-mobile = 12346789
+mobile = 18680701847
+
+###
+POST http://localhost:8000/member/member/login
+Content-Type: application/x-www-form-urlencoded
+
+mobile = 18680701849&code = 8888
 
 ###
