@@ -1,5 +1,7 @@
 package com.jiawa.train.member.req;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class MemberRegisterReq {
     @Override
     public String toString() {
@@ -8,6 +10,7 @@ public class MemberRegisterReq {
                 '}';
     }
 
+    @NotBlank(message = "【手机不能为空】")
     private String mobile;
 
     public String getMobile() {
