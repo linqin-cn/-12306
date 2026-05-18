@@ -1,6 +1,8 @@
 package com.jiawa.train.member.service;
 
 import cn.hutool.core.collection.CollUtil;
+import com.jiawa.train.common.exception.BusinessException;
+import com.jiawa.train.common.exception.BusinessExceptionEnum;
 import com.jiawa.train.member.domain.Member;
 import com.jiawa.train.member.domain.MemberExample;
 import com.jiawa.train.member.mapper.MemberMapper;
@@ -32,7 +34,7 @@ public class MemberService {
 
         // 如果已存在则认为手机号已注册，阻止重复注册
         if (CollUtil.isNotEmpty(memberList)) {
-            throw new RuntimeException("手机号已注册");
+            throw new BusinessException(BusinessExceptionEnum.MEMBER_MOBILE_EXIST);
         }
 
         Member member = new Member();
