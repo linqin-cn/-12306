@@ -55,17 +55,11 @@ export default defineComponent({
     });
 
     const sendCode = () => {
-      axios.post("/member/member/send-code", {
-        mobile: loginForm.mobile
+      axios.post("http://localhost:8080/memeber/member/send-code", {
+        mobile: loginForm.mobile,
       }).then(response => {
-        let data = response.data;
-        if (data.success) {
-          notification.success({ description: '发送验证码成功！' });
-          loginForm.code = "8888";
-        } else {
-          notification.error({ description: data.message });
-        }
-      });
+        console.log(response.data);
+      })
     };
 
     const login = () => {
