@@ -22,8 +22,8 @@
         </commentGenerator>
 
         <!-- 配置数据源，需要根据自己的项目修改 -->
-        <jdbcConnection driverClass="org.mariadb.jdbc.Driver"
-                        connectionURL="jdbc:mariadb://8.137.58.214:3306/train_member?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai"
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://8.137.58.214:3306/train_member?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai"
                         userId="train_member"
                         password="train_member">
         </jdbcConnection>
@@ -41,7 +41,7 @@
                              targetPackage="com.jiawa.train.member.mapper"
                              type="XMLMAPPER"/>
 
-        <table tableName="member" domainObjectName="Member"/>
-<!--        <table tableName="passenger" domainObjectName="Passenger"/>-->
+<!--        <table tableName="member" domainObjectName="Member"/>-->
+        <table tableName="passenger" domainObjectName="Passenger"/>
     </context>
 </generatorConfiguration>
