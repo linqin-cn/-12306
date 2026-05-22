@@ -3,7 +3,7 @@
     <div class="logo" />
     <div style="float: right; color: white;">
       您好：{{member.mobile}} &nbsp;&nbsp;
-      <router-link to="/login">
+      <router-link to="/login" style="color: white">
         退出登录
       </router-link>
     </div>
@@ -28,7 +28,6 @@ export default defineComponent({
   name: "The-header-view",
   setup() {
     let member = store.state.member;
-
 
     return {
       selectedKeys1 : ref(['2']),
