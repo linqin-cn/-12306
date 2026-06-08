@@ -4,7 +4,7 @@ const MEMBER = "MEMBER";
 
 export default createStore({
   state: {
-    member: window.sessionStorage.getItem(MEMBER) || {}
+    member: window.SessionStorage.get(MEMBER) || {}
   },
   getters: {
   },

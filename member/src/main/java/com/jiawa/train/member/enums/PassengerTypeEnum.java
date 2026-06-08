@@ -11,7 +11,6 @@ public enum PassengerTypeEnum {
     CHILD("2", "儿童"),
     STUDENT("3", "学生");
 
-
     private String code;
 
     private String desc;

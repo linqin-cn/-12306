@@ -2,8 +2,9 @@ package com.jiawa.train.member.mapper;
 
 import com.jiawa.train.member.domain.Passenger;
 import com.jiawa.train.member.domain.PassengerExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PassengerMapper {
     long countByExample(PassengerExample example);

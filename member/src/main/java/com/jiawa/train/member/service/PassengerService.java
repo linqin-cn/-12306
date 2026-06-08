@@ -23,8 +23,8 @@ import java.util.List;
 
 @Service
 public class PassengerService {
-    private static final Logger LOG = LoggerFactory.getLogger(PassengerService.class);
 
+    private static final Logger LOG = LoggerFactory.getLogger(PassengerService.class);
 
     @Resource
     private PassengerMapper passengerMapper;
@@ -69,4 +69,19 @@ public class PassengerService {
         return pageResp;
     }
 
+    public void delete(Long id) {
+        passengerMapper.deleteByPrimaryKey(id);
+    }
+
+    /**
+     * 查询我的所有乘客
+     */
+    public List<PassengerQueryResp> queryMine() {
+        PassengerExample passengerExample = new PassengerExample();
+        passengerExample.setOrderByClause("name asc");
+        PassengerExample.Criteria criteria = passengerExample.createCriteria();
+        criteria.andMemberIdEqualTo(LoginMemberContext.getId());
+        List<Passenger> list = passengerMapper.selectByExample(passengerExample);
+        return BeanUtil.copyToList(list, PassengerQueryResp.class);
+    }
 }
