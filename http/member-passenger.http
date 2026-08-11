@@ -1,4 +1,4 @@
-POST http://localhost:8001/member/passenger/save
+POST http://localhost:8000/member/passenger/save
 Content-Type: application/json
 token: {{token}}
 
@@ -14,7 +14,7 @@ Content-Type: application/json
 token: {{token}}
 
 {
-  "id": 2058843093997850624,
+  "id": 1628627322414436352,
   "memberId": 1624581077500825600,
   "name": "test1",
   "idCard": "123321",

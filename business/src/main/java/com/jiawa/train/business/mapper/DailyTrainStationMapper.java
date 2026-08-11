@@ -2,9 +2,8 @@ package com.jiawa.train.business.mapper;
 
 import com.jiawa.train.business.domain.DailyTrainStation;
 import com.jiawa.train.business.domain.DailyTrainStationExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface DailyTrainStationMapper {
     long countByExample(DailyTrainStationExample example);

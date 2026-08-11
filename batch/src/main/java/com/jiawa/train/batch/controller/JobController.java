@@ -1,4 +1,4 @@
-package com.jiawa.train.batch.coontroller;
+package com.jiawa.train.batch.controller;
 
 import com.jiawa.train.batch.req.CronJobReq;
 import com.jiawa.train.batch.resp.CronJobResp;
@@ -18,45 +18,25 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 @RestController
 @RequestMapping(value = "/admin/job")
 public class JobController {
-    private static final Logger LOG = LoggerFactory.getLogger(JobController.class);
+
+    private static Logger LOG = LoggerFactory.getLogger(JobController.class);
 
     @Autowired
     private SchedulerFactoryBean schedulerFactoryBean;
 
-    // 手动触发执行一个 Quartz 定时任务
-    /*
-    * schedulerFactoryBean.getScheduler() 获取 Quartz 调度器实例
-    * JobKey.jobKey(jobClassName, jobGroupName) 构建任务标识（类名 + 组名）
-    * triggerJob(jobKey) 立即触发执行该任务
-    *
-    * ### 实际应用场景
-当管理员想要 立即执行 某个定时任务（而不是等待 Cron 表达式触发）时，可以调用这个接口。
-
-例如： DailyTrainJob 原本每天凌晨 2 点执行，但管理员想立即生成 15 天后的车次数据，就可以手动调用 /admin/job/run 接口。
-    * */
     @RequestMapping(value = "/run")
     public CommonResp<Object> run(@RequestBody CronJobReq cronJobReq) throws SchedulerException {
-        // 1. 从请求体中获取任务类名和任务组名
         String jobClassName = cronJobReq.getName();
         String jobGroupName = cronJobReq.getGroup();
         LOG.info("手动执行任务开始：{}, {}", jobClassName, jobGroupName);
         schedulerFactoryBean.getScheduler().triggerJob(JobKey.jobKey(jobClassName, jobGroupName));
-        return new CommonResp<>(); // 返回Resp对象，默认success = true 表示操作成功
+        return new CommonResp<>();
     }
 
-    /*
-     * 创建定时任务的步骤：
-     * 1. 获取 Scheduler 实例并启动调度器
-     * 2. 构建 JobDetail 对象，指定任务类和标识
-     * 3. 构建 CronScheduleBuilder 对象，指定 Cron 表达式
-     * 4. 构建 CronTrigger 对象，指定触发器标识和调度规则
-     * 5. 调用 scheduler.scheduleJob(jobDetail, trigger) 将任务和触发器注册到调度器中
-     *
-     * 前端调用 /admin/job/add 接口，传入任务类名、组名、Cron 表达式和描述信息，即可创建一个新的定时任务。
-     * */
     @RequestMapping(value = "/add")
     public CommonResp add(@RequestBody CronJobReq cronJobReq) {
         String jobClassName = cronJobReq.getName();
@@ -97,7 +77,6 @@ public class JobController {
         return commonResp;
     }
 
-    // 暂停定时任务的步骤
     @RequestMapping(value = "/pause")
     public CommonResp pause(@RequestBody CronJobReq cronJobReq) {
         String jobClassName = cronJobReq.getName();
@@ -115,7 +94,7 @@ public class JobController {
         LOG.info("暂停定时任务结束：{}", commonResp);
         return commonResp;
     }
-    // 重启定时任务
+
     @RequestMapping(value = "/resume")
     public CommonResp resume(@RequestBody CronJobReq cronJobReq) {
         String jobClassName = cronJobReq.getName();
@@ -134,7 +113,6 @@ public class JobController {
         return commonResp;
     }
 
-    // 更新定时任务的步骤
     @RequestMapping(value = "/reschedule")
     public CommonResp reschedule(@RequestBody CronJobReq cronJobReq) {
         String jobClassName = cronJobReq.getName();
@@ -150,7 +128,6 @@ public class JobController {
             CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(cronExpression);
             CronTriggerImpl trigger1 = (CronTriggerImpl) scheduler.getTrigger(triggerKey);
             trigger1.setStartTime(new Date()); // 重新设置开始时间
-            // 转为 CronTrigger 类型，调用 getTriggerBuilder() 方法获取 TriggerBuilder 对象，设置新的调度规则并构建新的 Trigger 对象
             CronTrigger trigger = trigger1;
 
             // 按新的cronExpression表达式重新构建trigger
@@ -223,4 +200,5 @@ public class JobController {
         LOG.info("查看定时任务结束：{}", commonResp);
         return commonResp;
     }
+
 }

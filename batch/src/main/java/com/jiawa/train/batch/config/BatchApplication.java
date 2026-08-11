@@ -14,7 +14,9 @@ import org.springframework.core.env.Environment;
 @MapperScan("com.jiawa.train.*.mapper")
 @EnableFeignClients("com.jiawa.train.batch.feign")
 public class BatchApplication {
+
     private static final Logger LOG = LoggerFactory.getLogger(BatchApplication.class);
+
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(BatchApplication.class);
         Environment env = app.run(args).getEnvironment();
@@ -22,6 +24,3 @@ public class BatchApplication {
         LOG.info("测试地址: \thttp://127.0.0.1:{}{}/hello", env.getProperty("server.port"), env.getProperty("server.servlet.context-path"));
     }
 }
-/*
-* 跑批模块启动类，主要功能是启动Spring Boot应用程序，并进行相关的配置。
-* */

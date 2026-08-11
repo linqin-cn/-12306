@@ -4,9 +4,6 @@ import com.jiawa.train.common.resp.MemberLoginResp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/*
-* 登录会员上下文类，用于在请求处理过程中保存和获取当前登录用户的信息
-* */
 public class LoginMemberContext {
     private static final Logger LOG = LoggerFactory.getLogger(LoginMemberContext.class);
 

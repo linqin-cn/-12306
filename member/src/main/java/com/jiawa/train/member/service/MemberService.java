@@ -37,7 +37,7 @@ public class MemberService {
         String mobile = req.getMobile();
         Member memberDB = selectByMobile(mobile);
 
-        if (ObjectUtil.isNotNull(memberDB)) {
+        if (ObjectUtil.isNull(memberDB)) {
             // return list.get(0).getId();
             throw new BusinessException(BusinessExceptionEnum.MEMBER_MOBILE_EXIST);
         }

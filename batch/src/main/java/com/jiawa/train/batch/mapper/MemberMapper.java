@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-// MemberMapper 接口不需要手动编写实现类，MyBatis 会通过动态代理自动生成实现
 public interface MemberMapper {
     long countByExample(MemberExample example);
 

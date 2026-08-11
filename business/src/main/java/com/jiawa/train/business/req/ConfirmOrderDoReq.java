@@ -2,6 +2,7 @@ package com.jiawa.train.business.req;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
@@ -12,7 +13,6 @@ public class ConfirmOrderDoReq {
     /**
      * 会员id
      */
-    @NotNull(message = "【会员id】不能为空")
     private Long memberId;
 
     /**
@@ -49,8 +49,30 @@ public class ConfirmOrderDoReq {
     /**
      * 车票
      */
-    @NotBlank(message = "【车票】不能为空")
+    @NotEmpty(message = "【车票】不能为空")
     private List<ConfirmOrderTicketReq> tickets;
+
+    /**
+     * 验证码
+     */
+    @NotBlank(message = "【图片验证码】不能为空")
+    private String imageCode;
+
+    /**
+     * 图片验证码token
+     */
+    @NotBlank(message = "【图片验证码】参数非法")
+    private String imageCodeToken;
+
+    /**
+     * 日志跟踪号
+     */
+    private String logId;
+
+    /**
+     * 加入排队人数，用于体验排队功能
+     */
+    private int lineNumber;
 
     public Long getMemberId() {
         return memberId;
@@ -108,6 +130,38 @@ public class ConfirmOrderDoReq {
         this.tickets = tickets;
     }
 
+    public String getImageCode() {
+        return imageCode;
+    }
+
+    public void setImageCode(String imageCode) {
+        this.imageCode = imageCode;
+    }
+
+    public String getImageCodeToken() {
+        return imageCodeToken;
+    }
+
+    public void setImageCodeToken(String imageCodeToken) {
+        this.imageCodeToken = imageCodeToken;
+    }
+
+    public String getLogId() {
+        return logId;
+    }
+
+    public void setLogId(String logId) {
+        this.logId = logId;
+    }
+
+    public int getLineNumber() {
+        return lineNumber;
+    }
+
+    public void setLineNumber(int lineNumber) {
+        this.lineNumber = lineNumber;
+    }
+
     @Override
     public String toString() {
         return "ConfirmOrderDoReq{" +
@@ -118,6 +172,10 @@ public class ConfirmOrderDoReq {
                 ", end='" + end + '\'' +
                 ", dailyTrainTicketId=" + dailyTrainTicketId +
                 ", tickets=" + tickets +
+                ", imageCode='" + imageCode + '\'' +
+                ", imageCodeToken='" + imageCodeToken + '\'' +
+                ", logId='" + logId + '\'' +
+                ", lineNumber=" + lineNumber +
                 '}';
     }
 }

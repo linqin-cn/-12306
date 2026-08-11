@@ -1,6 +1,5 @@
 package com.jiawa.train.generator.server;
 
-import com.jiawa.train.generator.util.FreemarkerUtil;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Node;
@@ -18,18 +17,18 @@ public class ServerGenerator {
     }
 
     public static void main(String[] args) throws Exception {
-//        String generatorPath = getGeneratorPath();
-//
-//        Document document = new SAXReader().read("generator/" + generatorPath);
-//        Node table = document.selectSingleNode("//table");
-//        System.out.println(table);
-//        Node tableName = table.selectSingleNode("@tableName");
-//        Node domainObjectName = table.selectSingleNode("@domainObjectName");
-//        System.out.println(tableName.getText() + "/" + domainObjectName.getText());
-        FreemarkerUtil.initConfig("test.ftl");
-        Map<String, Object> param = new HashMap<>();
-        param.put("domain", "Test");
-        FreemarkerUtil.generator(toPath + "Test.java", param);
+        String generatorPath = getGeneratorPath();
+
+        Document document = new SAXReader().read("generator/" + generatorPath);
+        Node table = document.selectSingleNode("//table");
+        System.out.println(table);
+        Node tableName = table.selectSingleNode("@tableName");
+        Node domainObjectName = table.selectSingleNode("@domainObjectName");
+        System.out.println(tableName.getText() + "/" + domainObjectName.getText());
+//        FreemarkerUtil.initConfig("test.ftl");
+//        Map<String, Object> param = new HashMap<>();
+//        param.put("domain", "Test");
+//        FreemarkerUtil.generator(toPath + "Test.java", param);
     }
 
     private static String getGeneratorPath() throws DocumentException {

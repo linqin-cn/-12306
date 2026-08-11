@@ -8,9 +8,7 @@ import cn.hutool.core.util.ObjUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.jiawa.train.business.domain.DailyTrainCarriage;
-import com.jiawa.train.business.domain.DailyTrainCarriageExample;
-import com.jiawa.train.business.domain.TrainCarriage;
+import com.jiawa.train.business.domain.*;
 import com.jiawa.train.business.enums.SeatColEnum;
 import com.jiawa.train.business.mapper.DailyTrainCarriageMapper;
 import com.jiawa.train.business.req.DailyTrainCarriageQueryReq;
@@ -118,5 +116,14 @@ public class DailyTrainCarriageService {
             dailyTrainCarriageMapper.insert(dailyTrainCarriage);
         }
         LOG.info("生成日期【{}】车次【{}】的车厢信息结束", DateUtil.formatDate(date), trainCode);
+    }
+
+    public List<DailyTrainCarriage> selectBySeatType (Date date, String trainCode, String seatType) {
+        DailyTrainCarriageExample example = new DailyTrainCarriageExample();
+        example.createCriteria()
+                .andDateEqualTo(date)
+                .andTrainCodeEqualTo(trainCode)
+                .andSeatTypeEqualTo(seatType);
+        return dailyTrainCarriageMapper.selectByExample(example);
     }
 }

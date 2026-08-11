@@ -19,4 +19,5 @@ public class LogInterceptor implements HandlerInterceptor {
         MDC.put("LOG_ID", System.currentTimeMillis() + RandomUtil.randomString(3));
         return true;
     }
+
 }

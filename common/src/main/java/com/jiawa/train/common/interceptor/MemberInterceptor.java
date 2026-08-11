@@ -3,9 +3,9 @@ package com.jiawa.train.common.interceptor;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.jiawa.train.common.util.JwtUtil;
 import com.jiawa.train.common.context.LoginMemberContext;
 import com.jiawa.train.common.resp.MemberLoginResp;
-import com.jiawa.train.common.util.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
@@ -23,6 +23,7 @@ public class MemberInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        LOG.info("MemberInterceptor开始");
         //获取header的token参数
         String token = request.getHeader("token");
         if (StrUtil.isNotBlank(token)) {
@@ -32,6 +33,7 @@ public class MemberInterceptor implements HandlerInterceptor {
             MemberLoginResp member = JSONUtil.toBean(loginMember, MemberLoginResp.class);
             LoginMemberContext.setMember(member);
         }
+        LOG.info("MemberInterceptor结束");
         return true;
     }
 

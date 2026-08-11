@@ -23,6 +23,15 @@ const routes = [{
     }, {
       path: 'order',
       component: () => import('../views/main/order.vue'),
+    }, {
+      path: 'my-ticket',
+      component: () => import('../views/main/my-ticket.vue')
+    }, {
+      path: 'seat',
+      component: () => import('../views/main/seat.vue')
+    }, {
+      path: 'admin',
+      component: () => import('../views/main/admin.vue')
     }]
   }, {
     path: '',

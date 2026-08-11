@@ -2,9 +2,8 @@ package com.jiawa.train.business.mapper;
 
 import com.jiawa.train.business.domain.TrainStation;
 import com.jiawa.train.business.domain.TrainStationExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface TrainStationMapper {
     long countByExample(TrainStationExample example);

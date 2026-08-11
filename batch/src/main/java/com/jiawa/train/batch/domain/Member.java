@@ -1,8 +1,5 @@
 package com.jiawa.train.batch.domain;
 
-/*
-* 实体类，对应数据库表
-* */
 public class Member {
     private Long id;
 

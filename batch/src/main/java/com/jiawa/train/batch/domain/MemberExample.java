@@ -3,9 +3,6 @@ package com.jiawa.train.batch.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-* MemberExample 是 MyBatis Generator 自动生成的类，用于构建动态 SQL 查询条件。
-* */
 public class MemberExample {
     protected String orderByClause;
 

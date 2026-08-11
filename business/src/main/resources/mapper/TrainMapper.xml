@@ -73,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, code, `type`, `start`, start_pinyin, start_time, `end`, end_pinyin, end_time, 
+    id, code, `type`, `start`, start_pinyin, start_time, `end`, end_pinyin, end_time,
     create_time, update_time
   </sql>
   <select id="selectByExample" parameterType="com.jiawa.train.business.domain.TrainExample" resultMap="BaseResultMap">
@@ -91,7 +91,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from train
     where id = #{id,jdbcType=BIGINT}
@@ -107,13 +107,13 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.jiawa.train.business.domain.Train">
-    insert into train (id, code, `type`, `start`, 
-      start_pinyin, start_time, `end`, 
-      end_pinyin, end_time, create_time, 
+    insert into train (id, code, `type`, `start`,
+      start_pinyin, start_time, `end`,
+      end_pinyin, end_time, create_time,
       update_time)
-    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, #{start,jdbcType=VARCHAR}, 
-      #{startPinyin,jdbcType=VARCHAR}, #{startTime,jdbcType=TIME}, #{end,jdbcType=VARCHAR}, 
-      #{endPinyin,jdbcType=VARCHAR}, #{endTime,jdbcType=TIME}, #{createTime,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, #{start,jdbcType=VARCHAR},
+      #{startPinyin,jdbcType=VARCHAR}, #{startTime,jdbcType=TIME}, #{end,jdbcType=VARCHAR},
+      #{endPinyin,jdbcType=VARCHAR}, #{endTime,jdbcType=TIME}, #{createTime,jdbcType=TIMESTAMP},
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.jiawa.train.business.domain.Train">

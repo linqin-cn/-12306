@@ -19,6 +19,3 @@ public class SpringMvcConfig implements WebMvcConfigurer {
 
    }
 }
-//Spring MVC 的配置类，主要作用是注册拦截器，注册拦截器 registry.addInterceptor(logInterceptor)，用于打印日志流水号
-//由 Spring MVC 框架自动调用的回调方法
-

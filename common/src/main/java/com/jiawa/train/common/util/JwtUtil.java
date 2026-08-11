@@ -2,6 +2,7 @@ package com.jiawa.train.common.util;
 
 import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DateTime;
+import cn.hutool.crypto.GlobalBouncyCastleProvider;
 import cn.hutool.json.JSONObject;
 import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTPayload;
@@ -21,6 +22,8 @@ public class JwtUtil {
     private static final String key = "Jiawa12306";
 
     public static String createToken(Long id, String mobile) {
+        LOG.info("开始生成JWT token，id：{}，mobile：{}", id, mobile);
+        GlobalBouncyCastleProvider.setUseBouncyCastle(false);
         DateTime now = DateTime.now();
         DateTime expTime = now.offsetNew(DateField.HOUR, 24);
         Map<String, Object> payload = new HashMap<>();
@@ -38,10 +41,9 @@ public class JwtUtil {
         return token;
     }
 
-    /*
-    * 校验，校验token是否合法，包括是否被改过，是否过期等
-    * */
     public static boolean validate(String token) {
+        LOG.info("开始JWT token校验，token：{}", token);
+        GlobalBouncyCastleProvider.setUseBouncyCastle(false);
         JWT jwt = JWTUtil.parseToken(token).setKey(key.getBytes());
         // validate包含了verify
         boolean validate = jwt.validate(0);
@@ -50,6 +52,7 @@ public class JwtUtil {
     }
 
     public static JSONObject getJSONObject(String token) {
+        GlobalBouncyCastleProvider.setUseBouncyCastle(false);
         JWT jwt = JWTUtil.parseToken(token).setKey(key.getBytes());
         JSONObject payloads = jwt.getPayloads();
         payloads.remove(JWTPayload.ISSUED_AT);
@@ -59,12 +62,12 @@ public class JwtUtil {
         return payloads;
     }
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         createToken(1L, "123");
 
         String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE2NzY4OTk4MjcsIm1vYmlsZSI6IjEyMyIsImlkIjoxLCJleHAiOjE2NzY4OTk4MzcsImlhdCI6MTY3Njg5OTgyN30.JbFfdeNHhxKhAeag63kifw9pgYhnNXISJM5bL6hM8eU";
         validate(token);
 
         getJSONObject(token);
-    }*/
+    }
 }

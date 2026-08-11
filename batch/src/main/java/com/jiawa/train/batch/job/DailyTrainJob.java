@@ -16,9 +16,6 @@ import org.slf4j.MDC;
 
 import java.util.Date;
 
-/*
-* Quartz 定时任务，用于生成 15 天后的车次数据。
-* */
 @DisallowConcurrentExecution
 public class DailyTrainJob implements Job {
 
@@ -33,7 +30,6 @@ public class DailyTrainJob implements Job {
         MDC.put("LOG_ID", System.currentTimeMillis() + RandomUtil.randomString(3));
         LOG.info("生成15天后的车次数据开始");
         Date date = new Date();
-        // 转换为 JDK Date 类型
         DateTime dateTime = DateUtil.offsetDay(date, 15);
         Date offsetDate = dateTime.toJdkDate();
         CommonResp<Object> commonResp = businessFeign.genDaily(offsetDate);
