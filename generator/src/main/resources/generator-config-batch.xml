@@ -23,7 +23,7 @@
 
         <!-- 配置数据源，需要根据自己的项目修改 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://8.137.58.214/train_batch?serverTimezone=Asia/Shanghai"
+                        connectionURL="jdbc:mysql://127.0.0.1/train_batch?serverTimezone=Asia/Shanghai"
                         userId="train_batch"
                         password="Batch123">
         </jdbcConnection>

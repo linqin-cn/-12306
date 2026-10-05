@@ -113,7 +113,7 @@ train
 | Maven 3.8+ | 也可以直接使用项目内的 `mvnw` / `mvnw.cmd` |
 | Node.js 16+ | 前端项目运行与构建 |
 | MySQL 8.x | 初始化 `train_member`、`train_business`、`train_batch` |
-| Nacos | 服务注册与配置中心，默认地址 `127.0.0.1:8848`，命名空间 `train` |
+| Nacos | 服务注册与配置中心，默认地址 `nacos.linqin.space`，命名空间 `train` |
 | Redis | business 服务使用 Redis 做缓存和业务状态存储 |
 | Sentinel Dashboard | 可选，配置里默认指向 `localhost:18080` |
 | Seata | 可选，项目保留了 Seata 配置，事务组配置按 Nacos 中的实际配置调整 |

@@ -96,13 +96,13 @@ BEGIN
     DECLARE v_row INT;
     DECLARE v_col_code CHAR(1);
 
-    -- 清空已有座位
-    DELETE FROM train_seat;
-
     -- 游标：遍历所有车厢
     DECLARE cur_carriage CURSOR FOR
         SELECT train_code, `index`, seat_type, row_count FROM train_carriage ORDER BY train_code, `index`;
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_done = TRUE;
+
+    -- 清空已有座位
+    DELETE FROM train_seat;
 
     OPEN cur_carriage;
 
